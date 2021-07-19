@@ -25,8 +25,7 @@ class BaiduAIOCRClient:
             "grant_type": "client_credentials",
             "client_id": self.ak,
             "client_secret": self.sk
-        },
-        proxies={"https": "localhost:12580"}, verify=False)
+        })
         data = resp.json()
         self.accesstoken = data["access_token"]
 
@@ -42,9 +41,7 @@ class BaiduAIOCRClient:
             resp = self.session.post(
                 url,
                 params={"access_token": self.accesstoken},
-                data={"image": base64_encoded_im},
-                proxies={"https": "localhost:12580"},
-                verify=False
+                data={"image": base64_encoded_im}
             )
             data = resp.json()
             value = [
